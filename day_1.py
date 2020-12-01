@@ -1,5 +1,6 @@
 import time as t
 
+# Complexity of O(n^2)
 def task_1 (nums) :
   length = len(nums)
   
@@ -10,9 +11,9 @@ def task_1 (nums) :
       if (x + y == 2020) :
         print (x, " * ", y, " = ", x * y)
 
+# Complexity of O(n^3)
 def task_2 (nums) :
   length = len(nums)
-  
   for i in range(length) :
     for j in range(i + 1, length) :
       for k in range(j + 1, length) :
@@ -22,30 +23,33 @@ def task_2 (nums) :
         if (x + y + z == 2020) :
           print (x, " * ", y, " * ", z , " = ", x * y * z)
 
-# Using a dictionary as hashmap to get computational complexity of O(n)
+# Complexity of O(n)
 def task_1_fast (nums) :
-  d = dict([])
+  d = set()
   for i in nums :
     inv = 2020 - i
-    if (str(inv) in d and True) :
+    if (inv in d) :
       print(i, " * ", inv, " = ", i * inv)
       return
-    d[str(i)] = inv 
+    d.add(i) 
 
+
+# Complexity of O(n^2)
 def task_2_fast (nums) : 
   length = len(nums)
-  dx = dict([])
-  dy = dict([])
+  d = set()
   for i in range(length) :
     for j in range(i + 1, length) :
         x = nums[i]
         y = nums[j]
         inv = 2020 - x - y
-        if (str(inv) in dx and str(inv) in dy and True) :
+
+        if (inv in d) :
           print(x, " * ", y, " * ", inv, " = ", x * y * inv)
           return
-        dx[str(x)] = 2020 - x 
-        dy[str(y)] = 2020 - y 
+
+        d.add(x)
+        d.add(y) 
 
 def main () :
   test_nums = [1721, 979, 366, 299, 675, 1456]
